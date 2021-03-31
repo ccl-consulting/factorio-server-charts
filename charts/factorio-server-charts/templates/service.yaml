@@ -11,6 +11,9 @@ spec:
   type: {{ .Values.service.type }}
   ports:
   - name: factorio
+    {{- if eq .Values.service.type "NodePort" }}
+    nodePort: {{ .Values.service.port }}
+    {{- end }}
     port: {{ .Values.service.port }}
     targetPort: {{ .Values.service.port }}
     protocol: UDP
